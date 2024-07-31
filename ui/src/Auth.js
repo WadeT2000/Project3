@@ -1,7 +1,7 @@
-const loginServer = 'http://localhost:8080/'
+const loginServer = 'http://localhost:8080/verify'
 
 async function authenicate( username, password, requestType ) {
-  fetch(`${loginServer}`, {
+  const response = fetch(`${loginServer}`, {
     method: 'POST',
     headers: {
       'Accept': 'application/json, text/plain, */*',
@@ -14,11 +14,14 @@ async function authenicate( username, password, requestType ) {
   }).then(res => res.json())
     .then(res => {
       console.log(res)
+      return res;
     })
     .catch((error) => {
       console.log(error);
       return 'Error Connecting to the Server';
     })
+
+  return response;
 }
 
 export default authenicate;

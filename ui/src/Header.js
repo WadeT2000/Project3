@@ -1,6 +1,5 @@
-import { Link, useNavigate } from 'react-router-dom';
 import { Menubar } from 'primereact/menubar';
-
+import {useNavigate} from 'react-router-dom';
 
 function Header(){
   const navigate = useNavigate();
@@ -15,6 +14,12 @@ function Header(){
     label: 'Home',
     command: () => {
       navigate("/home");
+    }
+   },
+   {
+    label: 'Destination',
+    command: () => {
+      navigate("/destination");
     }
    }
   ]

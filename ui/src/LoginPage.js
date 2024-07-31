@@ -3,25 +3,38 @@ import './LoginPage.css';
 import authenicate from './Auth';
 import { useState, useRef } from 'react';
 import { Dialog } from 'primereact/dialog';
+import {useNavigate} from 'react-router-dom'
+
 
 const LoginPage = () => {
   const [ username, setUsername ] = useState('');
   const [ password, setPassword ] = useState('');
   const [ visible, setVisible ] = useState(false);
   const [ message, setMessage ] = useState(false);
+  const navigate = useNavigate();
 
   const register = async () => {
-    const status = await authenicate(username, password, 'register');
-    if (status !== 'success'){
+    const status = await authenicate(username, password, 'create');
+    if (status !== 'User created'){
       setMessage(status);
       setVisible(true);
       console.log(status)
       console.log(message)
+    } else {
+      navigate("/home");
     }
   }
 
-  const login = (event) => {
-    authenicate(username, password, 'login');
+  const login = async () => {
+    const status = await authenicate(username, password, 'login');
+    if (status !== 'Logging you in'){
+      setMessage(status);
+      setVisible(true);
+      console.log(status)
+      console.log(message)
+    } else {
+      navigate("/home");
+    }
   }
 
 

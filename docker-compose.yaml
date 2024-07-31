@@ -35,8 +35,8 @@ services:
       - DB_CONNECTION_STRING=postgresql://postgres:docker@db:5432/my_database
     volumes:
       - type: bind
-        source: ./api
-        target: /src/app
+        source: ./api/src
+        target: /src/app/src
   ui:
     container_name: ui
     build: ui/

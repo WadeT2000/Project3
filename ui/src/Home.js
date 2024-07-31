@@ -1,84 +1,57 @@
 import { Card } from 'primereact/card';
 import DestinationCard from './components/DestinationCard';
-// import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import {Dropdown} from 'primereact/dropdown';
+import { useNavigate } from 'react-router-dom';
+
+function DropdownList() { 
+  const citiesServer = 'http://localhost:8080/cities';
+  const [citiesData, setCitiesData] = useState([]);
+  const [selectedCity, setSelectedCity] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const response = fetch(`${citiesServer}`)
+      .then(res => res.json())
+      .then(res => {
+        console.log(res)
+        setCitiesData(res);
+      })
+      .catch((error) => {
+        console.log(error);
+        return 'Error Connecting to the Server';
+      })
+  }, []);
+
+//  const [selectedValue, setSelectedValue] = useState('Option 1'); 
+//  const handleChange = (event) => {
+//  setSelectedValue(event.target.value);
+//  };
+
+ const handleCityChange = (e) => {
+  setSelectedCity(e.value);
+  if (e.value) {
+    navigate(`/destination/${e.value.name}`);
+  }
+};
 
 
-// const [open, setOpen] = useState(false);
-
-//   const handleOpen = () => {
-//     setOpen(!open);
-//   };
-
-function Home(){
-
-  const destinations = [
-    {
-      name: "Paris",
-      country: "France",
-      region: "Europe",
-      description: "The City of Light, known for its art, cuisine, and iconic landmarks.",
-      activities: ["Visit the Eiffel Tower", "Explore the Louvre", "Stroll along the Seine"],
-      imageUrl: "https://cdn.pixabay.com/photo/2018/04/25/09/26/eiffel-tower-3349075_640.jpg"
-    },
-    {
-      name: "Bali",
-      country: "Indonesia",
-      region: "Southeast Asia",
-      description: "A tropical paradise with beautiful beaches and rich culture.",
-      activities: ["Relax on the beaches", "Visit ancient temples", "Try surfing"],
-      imageUrl: "https://imageio.forbes.com/specials-images/imageserve/675172642/pura-ulun-danu-bratan-temple-in-Bali-/960x0.jpg?format=jpg"
-    }
-  ];
-  
-  return (
-    <div className='homePage'>
-       <h1>Home</h1>
-            <div className="dropdown">
-            {/* <button onClick={handleOpen}>Dropdown</button>
-            {open ? (
-                <ul className="menu">
-                <li className="menu-item">
-                    <button>Menu 1</button>
-                </li>
-                <li className="menu-item">
-                    <button>Menu 2</button>
-                </li>
-                </ul>
-            ) : null}
-            {open ? <div>Is Open</div> : <div>Is Closed</div>} */}
-            </div>
-          <div className="flex flex-wrap">
-          {destinations.map((destination, index) => (
-            <DestinationCard 
-              key={index}
-              destination={destination}
-              activities={destination.activities}
-            />
-          ))}
-          </div>
-    </div>
-  )
+ return (
+  <div>
+    <h1>Select your Destination</h1>
+    {citiesData.length > 0 ? (
+      <Dropdown 
+        value={selectedCity} 
+        onChange={handleCityChange} 
+        options={citiesData} 
+        optionLabel="name" 
+        placeholder="Select a City" 
+        className="w-full md:w-14rem" 
+      />
+    ) : (
+      <p>Looking for your "perfect" destination...</p>
+    )}
+  </div>
+);
 }
-
-export default Home;
-
-//import Dropdown from 'react-bootstrap/Dropdown';
-// function countrySelector() {
-//   return (
-//     <Dropdown>
-//       <Dropdown.Toggle variant="success" id="dropdown-basic">
-//         Dropdown Button
-//       </Dropdown.Toggle>
-
-//       <Dropdown.Menu>
-//         <Dropdown.Item href="#/action-1">Los Angeles</Dropdown.Item>
-//         <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-//         <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-//         <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-//         <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-//       </Dropdown.Menu>
-//     </Dropdown>
-//   );
-// }
-
-// export default BasicExample;
+export default DropdownList;

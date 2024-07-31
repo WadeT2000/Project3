@@ -8,6 +8,7 @@ import Header from './Header.js';
 import LoginPage from './LoginPage.js';
 import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
 import { useState } from 'react';
+import DestinationPage from './DestinationPage.js';
 
 import "primereact/resources/themes/lara-light-cyan/theme.css";
 
@@ -23,6 +24,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/destination/:cityId" element={<DestinationPage />} />
         </Routes>
         <Footer />
       </PrimeReactProvider>
