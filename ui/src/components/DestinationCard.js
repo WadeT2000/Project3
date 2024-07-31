@@ -6,7 +6,7 @@ const DestinationCard = ({ destination, activities }) => {
   const header = (
     <img 
       alt={destination.name} 
-      src={destination.imageUrl} 
+      src={'https://picsum.photos/200/300'} 
       style={{ width: '100%', height: '200px', objectFit: 'cover' }}
     />
   );
@@ -39,24 +39,48 @@ const DestinationCard = ({ destination, activities }) => {
   );
 
   return (
-    <Card 
-      title={destination.name}
-      subTitle={`${destination.country}, ${destination.region}`}
-      header={header}
-      footer={footer}
-      className="m-2"
-      style={{ width: '400px', boxShadow: '0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12)' }}
-    >
-      <div className="m-0">
-        <p>{destination.description}</p>
-        <h4>Top Activities:</h4>
-        <ul className="pl-2 ml-2">
-          {activities.map((activity, index) => (
-            <li key={index}>{activity}</li>
-          ))}
-        </ul>
-      </div>
-    </Card>
+    <div>
+      <h3>Chicago</h3>
+      {/* <h4>Top Activities:</h4> */}
+      {activities.map((activity, index) => (
+         <Card 
+         title={activity.name}
+         // subTitle={`${destination.country}, ${destination.region}`}
+         header={header}
+         footer={footer}
+         className="m-2"
+         style={{ width: '400px', boxShadow: '0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12)' }}
+       >
+         <div className="m-0">
+     
+           
+           <ul className="pl-2 ml-2">
+              <li key={index}>{activity.name}: {activity.description}</li>
+           </ul>
+         </div>
+       </Card>
+        ))}
+    
+  </div>
+    // <Card 
+    //   title={destination.name}
+    //   // subTitle={`${destination.country}, ${destination.region}`}
+    //   header={header}
+    //   footer={footer}
+    //   className="m-2"
+    //   style={{ width: '400px', boxShadow: '0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12)' }}
+    // >
+    //   <div className="m-0">
+    //     <p>{destination.description}</p>
+    //     <h4>Top Activities:</h4>
+    //     <ul className="pl-2 ml-2">
+    //       {activities.map((activity, index) => (
+    //         <li key={index}>{activity.name}: {activity.description}</li>
+    //       ))}
+    //     </ul>
+    //   </div>
+    // </Card>
+
   );
 };
 
