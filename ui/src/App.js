@@ -1,33 +1,39 @@
 import './App.css';
-import React from 'react'
-import { BrowserRouter as Router} from 'react-router-dom';
-import { Routes, Route, Link, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Home from './Home.js';
 import Footer from './Footer.js';
 import Header from './Header.js';
 import LoginPage from './LoginPage.js';
-import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
-import { useState } from 'react';
+import { PrimeReactProvider } from 'primereact/api';
 import DestinationPage from './DestinationPage.js';
-
-import "primereact/resources/themes/lara-light-cyan/theme.css";
+import Cookies from 'js-cookie';
 
 export const AuthContext = React.createContext();
 
 function App() {
-  const [ auth, setAuth ] = useState(false);
+  const [auth, setAuth] = useState(false);
+
+  useEffect(() => {
+    const token = Cookies.get('auth_token');
+    console.log(token)
+    if (token) {
+      setAuth(true);
+    }
+  }, []);
+
   return (
     <Router>
-      <AuthContext.Provider value={ {auth, setAuth} }>
-      <PrimeReactProvider>
-        <Header />
-        <Routes>
-          <Route path="/" element={<LoginPage />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/destination/:cityId" element={<DestinationPage />} />
-        </Routes>
-        <Footer />
-      </PrimeReactProvider>
+      <AuthContext.Provider value={{ auth, setAuth }}>
+        <PrimeReactProvider>
+          <Header />
+          <Routes>
+            <Route path="/" element={<LoginPage />} />
+            <Route path="/home" element={auth ? <Home /> : <Navigate to="/" />} />
+            <Route path="/destination/:cityId" element={auth ? <DestinationPage /> : <Navigate to="/" />} />
+          </Routes>
+          <Footer />
+        </PrimeReactProvider>
       </AuthContext.Provider>
     </Router>
   );

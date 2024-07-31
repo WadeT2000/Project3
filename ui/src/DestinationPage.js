@@ -1,4 +1,4 @@
-import { Card } from 'primereact/card';
+//import { Card } from 'primereact/card';
 import DestinationCard from './components/DestinationCard';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 function DestinationPage(){
   const { cityId } = useParams();
   const [cityData, setCityData] = useState(null);
-  const [activities, setActivities] = useState([]);
+//  const [activities, setActivities] = useState([]);
 
   useEffect(() => {
     const fetchCityData = async () => {
@@ -15,7 +15,7 @@ function DestinationPage(){
         const response = await fetch(`http://localhost:8080/cities?search=${cityId}`);
         const data = await response.json();
         setCityData(data);
-        setActivities(data.activities || []);
+        //setActivities(data.activities || []);
       } catch (error) {
         console.error('Error fetching city data:', error);
       }
