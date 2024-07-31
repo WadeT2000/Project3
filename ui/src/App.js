@@ -9,6 +9,7 @@ import { PrimeReactProvider } from 'primereact/api';
 import DestinationPage from './DestinationPage.js';
 import Cookies from 'js-cookie';
 import "primeflex/primeflex.css"
+import "primereact/resources/themes/lara-light-cyan/theme.css";
 
 export const AuthContext = React.createContext();
 
