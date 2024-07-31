@@ -8,7 +8,7 @@ function Header(){
    {
     label: 'Login',
     command: () => {
-      navigate("/login");
+      navigate("/");
     }
    } ,
    {

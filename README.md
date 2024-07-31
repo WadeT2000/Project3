@@ -46,3 +46,8 @@
 
 
 -Please read each ReadMe under each endpoint for additional information on making changes to the front/back end of your application.
+
+
+
+
+sudo chown -R $(whoami) ./ui/node_modules

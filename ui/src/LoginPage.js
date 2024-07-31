@@ -29,7 +29,7 @@ const LoginPage = () => {
     <div className="card">
       <div className="flex flex-column align-items-center justify-content-center gap-3 py-5">
         <h1>Login</h1>
-        <input className="userName" maxlength="30" type="text" placeholder="Username" value={username} onChange={(e) => {setUsername(e.target.value)}}/> <br/>
+        <input className="userName" maxLength="30" type="text" placeholder="Username" value={username} onChange={(e) => {setUsername(e.target.value)}}/> <br/>
         <input className="passWord" type="text" placeholder="Password" value={password} onChange={(e) => {setPassword(e.target.value)}}/> <br/>
         <input className='rememberMe' type="checkbox"/>Remember Me <br/>
         <Button label="Login" icon="pi pi-user" className="w-10rem mx-auto" onClick={() => login()}></Button> <br/>
