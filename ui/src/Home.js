@@ -1,13 +1,13 @@
 import { Card } from 'primereact/card';
 import DestinationCard from './components/DestinationCard';
-//import { useState } from 'react';
+import { useState } from 'react';
 
 
-// const [open, setOpen] = React.useState(false);
+const [open, setOpen] = React.useState(false);
 
-//   const handleOpen = () => {
-//     setOpen(!open);
-//   };
+  const handleOpen = () => {
+    setOpen(!open);
+  };
 
 function Home(){
 
@@ -33,7 +33,7 @@ function Home(){
   return (
     <div className='homePage'>
        <h1>Home</h1>
-            {/* <div className="dropdown">
+            <div className="dropdown">
             <button onClick={handleOpen}>Dropdown</button>
             {open ? (
                 <ul className="menu">
@@ -46,7 +46,7 @@ function Home(){
                 </ul>
             ) : null}
             {open ? <div>Is Open</div> : <div>Is Closed</div>}
-            </div> */}
+            </div>
           <div className="flex flex-wrap">
           {destinations.map((destination, index) => (
             <DestinationCard 
