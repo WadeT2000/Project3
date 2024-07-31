@@ -1,4 +1,4 @@
-import { Card } from 'primereact/card';
+//import { Card } from 'primereact/card';
 import DestinationCard from './components/DestinationCard';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';

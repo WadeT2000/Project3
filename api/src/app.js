@@ -1,19 +1,73 @@
 const express = require('express');
 const app = express();
-const port = process.env.port || 8080;
-const cors = require('cors')
-const bodyParser = require('body-parser')
-const jsonparser = bodyParser.json()
-
+const port = process.env.PORT || 8080;
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
 const knex = require('knex')(require('../knexfile.js')[process.env.NODE_ENV || "development"]);
 
-// app.use(express.json());
+const SECRET_KEY = "my_secret_key"; 
 
-app.use(cors())
-//app.use(bodyParser.json())
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true
+}));
+app.use(bodyParser.json());
+app.use(cookieParser());
+
+app.post("/verify", async (req, res) => {
+    const { user, pass, type } = req.body;
+    let query = await knex('users').select("*").where("username", user);
+
+    
+    if (type === "login") {
+        if (query.length === 1 && await bcrypt.compare(pass, query[0].password)) {
+            const token = jwt.sign({ username: user }, SECRET_KEY, { expiresIn: '1d' });
+            console.log('Generated Token:', token);
+            res.cookie('auth_token', token, { httpOnly: true, secure: false });
+            res.status(200).json({ message: "Logging you in", token });
+        } else {
+            res.status(404).json({ message: "Incorrect username or password" });
+        }
+    } else if (type === "create") {
+        if (query.length === 0) {
+            const hashedPassword = await bcrypt.hash(pass, 10);
+            await knex('users').insert({ username: user, password: hashedPassword });
+            res.status(200).json({ message: "User created" });
+        } else {
+            res.status(401).json({ message: "User exists with that username already" });
+        }
+    } else {
+        res.status(404).json({ message: "Invalid operation" });
+    }
+});
+
+app.get('/protected-route', (req, res) => {
+    const token = req.cookies.auth_token;
+    if (!token) return res.status(401).json("Access denied");
+
+    try {
+        const verified = jwt.verify(token, SECRET_KEY);
+        res.status(200).json("Access granted");
+    } catch (err) {
+        res.status(400).json("Invalid token");
+    }
+});
 
 app.get('/', (req, res) => {
     res.status(200).json('This is not the endpoint you are looking for. Try /cities or /activities. Or /verify. Or /killyourself')
+})
+
+app.get('/killyourself', (req, res) => {
+    res.status(200).send("You Should Really KYS")
+})
+
+app.get('/users', (req, res) => {
+    knex('users')
+    .select('*')
+    .then(data => res.status(200).json(data))
 })
 
 app.get('/cities', async (req, res) => {
@@ -84,7 +138,6 @@ app.get('/cities', async (req, res) => {
                     }))
                 };
             }));
-
             res.status(200).json(cityActivities);
         }
     } catch (error) {
@@ -93,46 +146,10 @@ app.get('/cities', async (req, res) => {
 });
 
 
-
-
-
-
-
-
 app.get('/activities', (req, res) => {
     knex('activities')
     .select('*')
     .then(data => res.status(200).json(data))
-})
-
-app.post("/verify", bodyParser.json(), async (req, res) => {
-    const { user, pass, type } = req.body;
-    //console.log(user, pass, type)
-    let query = await knex('users').select("*").where("username", user);
-    console.log(query.length);
-
-    if(type === "login"){
-        if (query.length == 1 && pass == query[0].password) {
-            //console.log("test")
-            res.status(200).json("Logging you in");
-        }
-        else {
-            res.status(404).json("Incorrect username or password");
-        }
-        
-    } else if (type === "create"){
-        if (query.length == 0){
-            await knex('users')
-            .insert({username: user, password: pass});
-            res.status(200).json("User created");
-        }
-        else {
-            res.status(400).json("User exists with that username already");
-        }
-        
-    } else {
-        res.status(404).json("INVALID USERNAME/ PASSWORD");
-    }
 })
 
 
