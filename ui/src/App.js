@@ -21,7 +21,7 @@ function App() {
       <PrimeReactProvider>
         <Header />
         <Routes>
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/" element={<LoginPage />} />
           <Route path="/home" element={<Home />} />
         </Routes>
         <Footer />
