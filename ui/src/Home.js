@@ -31,7 +31,7 @@ function DropdownList() {
  const handleCityChange = (e) => {
   setSelectedCity(e.value);
   if (e.value) {
-    navigate(`/destination/${e.value.name}`);
+    navigate(`/destination/${e.value.id}`);
   }
 };
 

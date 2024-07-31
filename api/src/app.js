@@ -60,8 +60,10 @@ app.get('/cities', async (req, res) => {
                     .where('city_activity.city_id', city.id);
 
                 return {
+                    id: city.id,
                     name: city.name,
                     activities: activities.map(activity => ({
+                        id: activity.id,
                         name: activity.name,
                         description: activity.description,
                         beach: activity.beach,
