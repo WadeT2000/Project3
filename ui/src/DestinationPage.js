@@ -2,12 +2,18 @@ import { Card } from 'primereact/card';
 import DestinationCard from './components/DestinationCard';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import React from 'react';
+import Preferences from './components/Preferences';
 
+import "../node_modules/primeflex/primeflex.css"
+
+export const ActivitiesContext = React.createContext();
 
 function DestinationPage(){
   const { cityId } = useParams();
   const [cityData, setCityData] = useState(null);
   const [activities, setActivities] = useState([]);
+  const [filteredActivities, setFilteredActivities] = useState([]);
 
   useEffect(() => {
     const fetchCityData = async () => {
@@ -17,11 +23,7 @@ function DestinationPage(){
         console.log('Activities.length: ' + activities.length)
         setCityData(data);
         setActivities(data.activities);
-        console.log(data)
-        console.log(data.activities)
-        console.log('Activities type:', Array.isArray(data.activities));
-        console.log(activities)
-        console.log('Activities.length: ' + activities.length)
+        setFilteredActivities(data.activities);
       } catch (error) {
         console.error('Error fetching city data:', error);
       }
@@ -36,19 +38,21 @@ function DestinationPage(){
   
   return (
     <div className='homePage'>
-          <div className="flex flex-wrap">
-            
-          {activities.length > 0 ? (
-              <DestinationCard 
-                destination={cityData}
-                activities={activities}
-              />
+          <ActivitiesContext.Provider value={{activities, filteredActivities, setFilteredActivities}}>
+          <Preferences destination={cityData} />
+          {filteredActivities.length > 0 ? (
+            <DestinationCard 
+              
+              destination={cityData}
+              activities={filteredActivities}
+            />
           ) : (
             <p>Looking for your "perfect" destination...</p>
           )}
-          </div>
+          </ActivitiesContext.Provider>
     </div>
   )
+
 }
 
 export default DestinationPage;

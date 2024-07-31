@@ -7,7 +7,7 @@
     padding-top: 80px;
   }
   
-  .flex {
+  .flex-container {
     background-color: white;
     border-radius: 12px;
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
@@ -49,3 +49,4 @@
   .p-button.w-10rem {
     width: 12rem;
   }
+

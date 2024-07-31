@@ -37,7 +37,7 @@ function DropdownList() {
 
 
  return (
-  <div>
+  <div className='background'>  
     <h1>Select your Destination</h1>
     {citiesData.length > 0 ? (
       <Dropdown 

@@ -1,0 +1,29 @@
+.preferences-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.select-button-container {
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.custom-select-button {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.custom-select-button .p-button {
+  flex: 0 0 auto;
+  margin-right: 5px;
+  white-space: nowrap;
+}
+
+/* Add some responsive styles */
+@media (max-width: 768px) {
+  .custom-select-button .p-button {
+    font-size: 0.9em;
+    padding: 0.5em 1em;
+  }
+}

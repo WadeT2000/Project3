@@ -18,8 +18,6 @@ const LoginPage = () => {
     if (status !== 'User created'){
       setMessage(status);
       setVisible(true);
-      console.log(status)
-      console.log(message)
     } else {
       navigate("/home");
     }
@@ -30,8 +28,6 @@ const LoginPage = () => {
     if (status !== 'Logging you in'){
       setMessage(status);
       setVisible(true);
-      console.log(status)
-      console.log(message)
     } else {
       navigate("/home");
     }
@@ -40,7 +36,7 @@ const LoginPage = () => {
 
   return (
     <div className="card">
-      <div className="flex flex-column align-items-center justify-content-center gap-3 py-5">
+      <div className="flex-container flex-column align-items-center justify-content-center gap-3 py-5">
         <h1>Login</h1>
         <input className="userName" maxLength="30" type="text" placeholder="Username" value={username} onChange={(e) => {setUsername(e.target.value)}}/> <br/>
         <input className="passWord" type="text" placeholder="Password" value={password} onChange={(e) => {setPassword(e.target.value)}}/> <br/>

@@ -11,6 +11,7 @@ import { useState } from 'react';
 import DestinationPage from './DestinationPage.js';
 
 import "primereact/resources/themes/lara-light-cyan/theme.css";
+import "primeflex/primeflex.css"
 
 export const AuthContext = React.createContext();
 
