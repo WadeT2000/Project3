@@ -37,6 +37,7 @@ services:
       - type: bind
         source: ./api
         target: /src/app
+      - /src/app/node_modules
   ui:
     container_name: ui
     build: ui/
@@ -50,6 +51,7 @@ services:
       - type: bind
         source: ./ui
         target: /app
+      - /app/node_modules
       
 networks:
   freaky:
