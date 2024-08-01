@@ -55,4 +55,6 @@ function DestinationPage(){
 
 }
 
+//add ability to navigate back home after a destination has been selected
+
 export default DestinationPage;

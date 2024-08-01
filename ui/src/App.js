@@ -18,7 +18,6 @@ function App() {
 
   useEffect(() => {
     const token = Cookies.get('auth_token');
-    console.log(token)
     if (token) {
       setAuth(true);
     }
