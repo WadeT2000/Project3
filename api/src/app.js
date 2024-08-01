@@ -17,6 +17,11 @@ app.use(cors({
 app.use(bodyParser.json());
 app.use(cookieParser());
 
+app.post('/preference', async (req, res) => {
+    const {activity} = req.body
+    
+})
+
 app.post("/verify", async (req, res) => {
     const { user, pass, type } = req.body;
     let query = await knex('users').select("*").where("username", user);
