@@ -8,15 +8,11 @@ import { ActivitiesContext } from '../DestinationPage';
 
 
 const DestinationCard = ({ destination, activities }) => {
-
-
-  const header = (
-    <img 
-      alt={destination.name} 
-      src={'https://picsum.photos/200/300'} 
-      style={{ width: '100%', height: '200px', objectFit: 'cover' }}
-    />
-  );
+  console.log(activities)
+  // const header = (
+    
+    
+  // );
 
   const buttonStyle = {
     flex: 1,
@@ -52,10 +48,15 @@ const DestinationCard = ({ destination, activities }) => {
       <h3>{destination.name}</h3>
       <div className="flex flex-wrap column-gap-4 row-gap-6 justify-content-between m-2">
       {filteredActivities.map((activity, index) => (
+        
         <Card 
           key={index}
           title={activity.name}
-          header={header}
+          header={<img 
+            alt={activity.name} 
+            src={process.env.PUBLIC_URL + activity.photo}
+            style={{ width: '100%', height: '200px', objectFit: 'cover' }}
+          />}
           footer={footer}
           style={{ width: '400px', boxShadow: '0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12)' }}
         >
@@ -64,6 +65,7 @@ const DestinationCard = ({ destination, activities }) => {
               <li>{activity.description}</li>
             </ul>
           </div>
+          {console.log(activity.photo)}
         </Card>
       ))}
       </div>

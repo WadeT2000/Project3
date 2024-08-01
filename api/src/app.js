@@ -100,6 +100,7 @@ app.get('/cities', async (req, res) => {
                     afternoon: activity.afternoon,
                     evening: activity.evening,
                     night: activity.night,
+                    photo: activity.photo
                 }))
             };
 
@@ -134,6 +135,7 @@ app.get('/cities', async (req, res) => {
                         afternoon: activity.afternoon,
                         evening: activity.evening,
                         night: activity.night,
+                        photo: activity.photo
                     }))
                 };
             }));

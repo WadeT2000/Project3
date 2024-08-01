@@ -6,6 +6,7 @@ exports.up = function(knex) {
     return knex.schema.createTable('activities', table => {
       table.increments();
       table.string('name', 250).notNullable();
+      
       table.string('description', 2500)
       //nature type 
       table.boolean('beach')
@@ -26,7 +27,7 @@ exports.up = function(knex) {
       table.boolean('afternoon')
       table.boolean('evening')
       table.boolean('night')
-      
+      table.string('photo', 250).notNullable();
     })
 };
   

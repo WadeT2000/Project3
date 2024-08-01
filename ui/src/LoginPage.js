@@ -26,7 +26,6 @@ const LoginPage = () => {
   };
 
   const handleResponse = (res) => {
-    console.log('Response:', res);
     if (res.token) {
       Cookies.set('auth_token', res.token);
       setAuth(true);
