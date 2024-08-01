@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Dropdown } from 'primereact/dropdown';
 import { useNavigate } from 'react-router-dom';
+import { Card } from 'primereact/card';
 
 function DropdownList() {
   const citiesServer = 'http://localhost:8080/cities';
@@ -28,17 +29,21 @@ function DropdownList() {
   };
 
   return (
-    <div>
-      <h2>Select your Destination</h2>
+    <div >
       {citiesData.length > 0 ? (
-        <Dropdown
-          value={selectedCity}
-          onChange={handleCityChange}
-          options={citiesData}
-          optionLabel="name"
-          placeholder="Select a City"
-          className="w-full md:w-14rem"
-        />
+        <Card 
+          title="Select your Destination"
+          style={{ width: '400px'}}
+          >
+            <Dropdown
+              value={selectedCity}
+              onChange={handleCityChange}
+              options={citiesData}
+              optionLabel="name"
+              placeholder="Select a City"
+              className="w-full md:w-14rem"
+            />
+        </Card>  
       ) : (
         <p>Looking for your "perfect" destination...</p>
       )}

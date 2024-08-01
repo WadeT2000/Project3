@@ -18,10 +18,10 @@ const Home = () => {
   }, [navigate]);
 
   return (
-    <div>
-      <h1>Home<br/>
+    <div className='homeDiv'>
+      <h1>2"BDB Travel<br/>
       <LogoutButton /></h1>
-      <DropdownList />
+      <DropdownList style='justify-content-center'/>
     </div>
   );
 };

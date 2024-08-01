@@ -1,4 +1,7 @@
-.background {
-    background-image: url("https://www.pngall.com/wp-content/uploads/8/Tourist.png");
-    background-color: #cccccc;
+.homeDiv {
+    background-image: url("./Tourist.png");
+    background-color: #ADD8E6;
+    background-size: contain;
+    width: 100%;
+    height: 900px;
    }

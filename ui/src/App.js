@@ -10,6 +10,8 @@ import DestinationPage from './DestinationPage.js';
 import Cookies from 'js-cookie';
 import "primeflex/primeflex.css";
 import "primereact/resources/themes/lara-light-cyan/theme.css";
+import DetailsPage from './DetailsPage.js';
+
 
 export const AuthContext = React.createContext();
 
@@ -31,6 +33,7 @@ function App() {
             <Route path="/" element={<LoginPage />} />
             <Route path="/home" element={auth ? <Home /> : <Navigate to="/" />} />
             <Route path="/destination/:cityId" element={auth ? <DestinationPage /> : <Navigate to="/" />} />
+            <Route path="/details" element={auth ? <DetailsPage /> : <Navigate to="/" />} />
           </Routes>
           <Footer />
         </PrimeReactProvider>

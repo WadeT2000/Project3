@@ -4,15 +4,14 @@ import { Button } from 'primereact/button';
 import Preferences from './Preferences';
 import { useContext } from 'react';
 import { ActivitiesContext } from '../DestinationPage';
+import DetailsPage from '../DetailsPage';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const DestinationCard = ({ destination, activities }) => {
+  const navigate = useNavigate();
   console.log(activities)
-  // const header = (
-    
-    
-  // );
 
   const buttonStyle = {
     flex: 1,
@@ -24,22 +23,9 @@ const DestinationCard = ({ destination, activities }) => {
     padding: '0.5rem',
   };
 
-  const footer = (
-    <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.5rem', gap: '0.5rem' }}>
-      <Button 
-        className="p-button destination-button"
-        label="View Details" 
-        icon="pi pi-info-circle" 
-        style={buttonStyle}
-      />
-      <Button 
-        className="p-button destination-button"
-        label="Book Now" 
-        icon="pi pi-info-circle"
-        style={buttonStyle}
-      />
-    </div>
-  );
+  const handleClick = () => {
+    navigate(`/details`);
+  }
 
   const {filteredActivities, setFilteredActivities} = useContext(ActivitiesContext);
 
@@ -58,7 +44,17 @@ const DestinationCard = ({ destination, activities }) => {
             src={process.env.PUBLIC_URL + activity.photo}
             style={{ width: '100%', height: '200px', objectFit: 'cover' }}
           />}
-          footer={footer}
+          footer={(
+            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.5rem', gap: '0.5rem' }}>
+              <Button 
+                onClick={handleClick}
+                className="p-button destination-button"
+                label="View Details" 
+                icon="pi pi-info-circle" 
+                style={buttonStyle}
+              />
+            </div>
+          )}
           style={{ width: '400px', boxShadow: '0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12)' }}
         >
           <div className="m-0">

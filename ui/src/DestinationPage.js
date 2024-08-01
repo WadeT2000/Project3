@@ -12,6 +12,7 @@ export const ActivitiesContext = React.createContext();
 
 function DestinationPage(){
   const { cityId } = useParams();
+
   const [cityData, setCityData] = useState(null);
   const [activities, setActivities] = useState([]);
   const [filteredActivities, setFilteredActivities] = useState([]);
@@ -39,9 +40,9 @@ function DestinationPage(){
   
   return (
     <div className='homePage'>
+          <BackButton /> <LogoutButton />
           <ActivitiesContext.Provider value={{activities, filteredActivities, setFilteredActivities}}>
           <Preferences destination={cityData} />
-          <BackButton /> <LogoutButton />
           {filteredActivities.length > 0 ? (
             <DestinationCard 
               
