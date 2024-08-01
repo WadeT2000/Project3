@@ -88,6 +88,7 @@ app.get('/cities', async (req, res) => {
             const result = {
                 name: cityActivities[0].city_name,
                 activities: cityActivities.map(activity => ({
+                    id: activity.id,
                     name: activity.activity_name,
                     description: activity.description,
                     beach: activity.beach,

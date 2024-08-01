@@ -24,8 +24,10 @@ function DestinationPage(){
         const data = await response.json();
         console.log('Activities.length: ' + activities.length)
         setCityData(data);
+        console.log(data);
         setActivities(data.activities);
         setFilteredActivities(data.activities);
+        console.log(data.activities)
       } catch (error) {
         console.error('Error fetching city data:', error);
       }
@@ -45,19 +47,16 @@ function DestinationPage(){
           <Preferences destination={cityData} />
           {filteredActivities.length > 0 ? (
             <DestinationCard 
-              
               destination={cityData}
               activities={filteredActivities}
             />
           ) : (
-            <p>Looking for your "perfect" destination...</p>
+            <p>Your "perfect" destination doesn't exist... You're too needy!</p>
           )}
           </ActivitiesContext.Provider>
     </div>
   )
 
 }
-
-//add ability to navigate back home after a destination has been selected
 
 export default DestinationPage;

@@ -17,13 +17,19 @@ export const AuthContext = React.createContext();
 
 function App() {
   const [auth, setAuth] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const token = Cookies.get('auth_token');
     if (token) {
       setAuth(true);
     }
+    setLoading(false);
   }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <Router>
@@ -33,7 +39,7 @@ function App() {
             <Route path="/" element={<LoginPage />} />
             <Route path="/home" element={auth ? <Home /> : <Navigate to="/" />} />
             <Route path="/destination/:cityId" element={auth ? <DestinationPage /> : <Navigate to="/" />} />
-            <Route path="/details" element={auth ? <DetailsPage /> : <Navigate to="/" />} />
+            <Route path="/details/:id" element={auth ? <DetailsPage /> : <Navigate to="/" />} />
           </Routes>
           <Footer />
         </PrimeReactProvider>

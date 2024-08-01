@@ -23,8 +23,10 @@ const DestinationCard = ({ destination, activities }) => {
     padding: '0.5rem',
   };
 
-  const handleClick = () => {
-    navigate(`/details`);
+  const handleClick = (id, src, activity) => {
+    navigate(`/details/${id}`, { 
+      state: { imgSrc: src }
+    });
   }
 
   const {filteredActivities, setFilteredActivities} = useContext(ActivitiesContext);
@@ -47,7 +49,7 @@ const DestinationCard = ({ destination, activities }) => {
           footer={(
             <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.5rem', gap: '0.5rem' }}>
               <Button 
-                onClick={handleClick}
+                onClick={()=>handleClick(activity.id, activity.photo, activity)}
                 className="p-button destination-button"
                 label="View Details" 
                 icon="pi pi-info-circle" 
@@ -62,7 +64,6 @@ const DestinationCard = ({ destination, activities }) => {
               <li>{activity.description}</li>
             </ul>
           </div>
-          {console.log(activity.photo)}
         </Card>
       ))}
       </div>
