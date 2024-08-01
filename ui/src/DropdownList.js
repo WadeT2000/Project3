@@ -29,7 +29,7 @@ function DropdownList() {
 
   return (
     <div>
-      <h1>Select your Destination</h1>
+      <h2>Select your Destination</h2>
       {citiesData.length > 0 ? (
         <Dropdown
           value={selectedCity}

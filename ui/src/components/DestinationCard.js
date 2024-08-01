@@ -47,10 +47,11 @@ const DestinationCard = ({ destination, activities }) => {
 
   const {filteredActivities, setFilteredActivities} = useContext(ActivitiesContext);
 
+
   return (
     <>
       <h3>{destination.name}</h3>
-      <div className="flex flex-wrap column-gap-4 row-gap-6 justify-content-between m-2">
+      <div className="flex flex-wrap column-gap-4 row-gap-6 justify-content-center m-2">
       {filteredActivities.map((activity, index) => (
         <Card 
           key={index}

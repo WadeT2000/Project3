@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import React from 'react';
 import Preferences from './components/Preferences';
+import BackButton, { LogoutButton } from './NavigationButton';
 
 import "../node_modules/primeflex/primeflex.css"
 
@@ -40,6 +41,7 @@ function DestinationPage(){
     <div className='homePage'>
           <ActivitiesContext.Provider value={{activities, filteredActivities, setFilteredActivities}}>
           <Preferences destination={cityData} />
+          <BackButton /> <LogoutButton />
           {filteredActivities.length > 0 ? (
             <DestinationCard 
               
