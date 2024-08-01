@@ -21,7 +21,9 @@ const Home = () => {
     <div className='homeDiv'>
       <h1>2"BDB Travel<br/>
       <LogoutButton /></h1>
+      <div className='dropDownDiv'>
       <DropdownList style='justify-content-center'/>
+      </div>
     </div>
   );
 };

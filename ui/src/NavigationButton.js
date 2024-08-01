@@ -7,8 +7,11 @@ import { AuthContext } from './App';
 
 export default function BackButton() {
   const navigate = useNavigate();
+  const navigateBack = () => {
+    navigate(-1);
+  }
     return (
-            <Button label="Back" onClick={()=> navigate(-1)}/>
+            <Button label="Back" onClick={()=> navigateBack()}/>
     )
 }
 
