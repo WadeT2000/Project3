@@ -18,7 +18,6 @@ function App() {
 
   useEffect(() => {
     const token = Cookies.get('auth_token');
-    console.log(token)
     if (token) {
       setAuth(true);
     }
@@ -28,7 +27,6 @@ function App() {
     <Router>
       <AuthContext.Provider value={{ auth, setAuth }}>
         <PrimeReactProvider>
-          <Header />
           <Routes>
             <Route path="/" element={<LoginPage />} />
             <Route path="/home" element={auth ? <Home /> : <Navigate to="/" />} />
