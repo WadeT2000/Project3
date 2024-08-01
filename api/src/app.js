@@ -56,7 +56,7 @@ app.get('/protected-route', (req, res) => {
 });
 
 app.get('/', (req, res) => {
-    res.status(200).json('This is not the endpoint you are looking for. Try /cities or /activities. Or /verify. Or /killyourself')
+    res.status(200).json('This is not the endpoint you are looking for. Try /cities or /activities. Or /verify. Or /activities/details. Or /killyourself')
 })
 
 app.get('/killyourself', (req, res) => {
@@ -154,6 +154,17 @@ app.get('/activities', (req, res) => {
 })
 
 
+app.get('/activities/details', (req, res) => {
+    knex('activity_details')
+    .select('*')
+    .then(data => res.status(200).json(data))
+})
 
+
+app.get('/activitynames', (req, res) => {
+    knex('activities')
+    .select('name')
+    .then(data => res.status(200).json(data))
+})
 
 app.listen(port, () => console.log(`Express server listening on port ${port}`))
