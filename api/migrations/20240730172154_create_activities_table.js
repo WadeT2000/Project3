@@ -5,7 +5,7 @@
 exports.up = function(knex) {
     return knex.schema.createTable('activities', table => {
       table.increments();
-      table.string('name', 250).notNullable();
+      table.string('name', 250).unique().notNullable();
       
       table.string('description', 2500)
       //nature type 
