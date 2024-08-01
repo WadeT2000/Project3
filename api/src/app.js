@@ -25,7 +25,6 @@ app.post("/verify", async (req, res) => {
     if (type === "login") {
         if (query.length === 1 && await bcrypt.compare(pass, query[0].password)) {
             const token = jwt.sign({ username: user }, SECRET_KEY, { expiresIn: '1d' });
-            console.log('Generated Token:', token);
             res.cookie('auth_token', token, { httpOnly: true, secure: false });
             res.status(200).json({ message: "Logging you in", token });
         } else {
