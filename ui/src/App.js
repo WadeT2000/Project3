@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Home from './Home.js';
 import Footer from './Footer.js';
-import Header from './Header.js';
 import LoginPage from './LoginPage.js';
 import { PrimeReactProvider } from 'primereact/api';
 import DestinationPage from './DestinationPage.js';
