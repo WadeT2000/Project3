@@ -19,9 +19,13 @@ const Home = () => {
 
   return (
     <div className='homeDiv'>
-      <h1>2"BDB Travel<br/>
-      <LogoutButton /></h1>
+      <div className='buttonContainer'>
+      <div></div>
+      <LogoutButton />
+      </div>
+      
       <div className='dropDownDiv'>
+      <h1> 2"BDB Travel</h1>
       <DropdownList style='justify-content-center'/>
       </div>
     </div>

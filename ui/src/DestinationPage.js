@@ -42,7 +42,9 @@ function DestinationPage(){
   
   return (
     <div className='homePage'>
-          <BackButton /> <LogoutButton />
+      <div className='buttonContainer'>
+      <BackButton /> <LogoutButton />
+      </div>
           <ActivitiesContext.Provider value={{activities, filteredActivities, setFilteredActivities}}>
           <Preferences destination={cityData} />
           {filteredActivities.length > 0 ? (

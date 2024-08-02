@@ -6,6 +6,8 @@ import { Dialog } from 'primereact/dialog';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { AuthContext } from './App';
+import { InputText } from 'primereact/inputtext';
+import { FloatLabel } from "primereact/floatlabel";
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
@@ -113,8 +115,20 @@ const LoginPage = () => {
     <div className="card">
       <form className="flex-container flex-column align-items-center justify-content-center gap-3 py-5">
         <h1>Login</h1>
-        <input className="userName" minLength="5" maxLength="30" type="text" placeholder={checked&&username!=='' ? username : "username"} value={username} onChange={(e) => setUsername(e.target.value)} required/> <br />
-        <input className="passWord" minLength="5" maxLength="30" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required/> <br />
+        <div className="flex flex-wrap justify-content-start align-items-center gap-2">
+          <FloatLabel>   
+            <InputText id="username" type="text" className="w-12rem" minLength="5" maxLength="30" placeholder={checked&&username!=='' ? username : ""} value={username} onChange={(e) => setUsername(e.target.value)} required/>
+            <label className="w-6rem">Username</label>
+          </FloatLabel> 
+        </div>
+        <br/>
+        <div className="flex flex-wrap justify-content-start align-items-center gap-2">
+          <FloatLabel>
+            <InputText id="password" type="password" className="w-12rem" minLength="5" maxLength="30" placeholder="" value={password} onChange={(e) => setPassword(e.target.value)} required/>
+            <label className="w-6rem">Password</label>
+          </FloatLabel>
+        </div>
+            <br />
         <input className='rememberMe' type="checkbox" checked={checked} onChange={handleRememberMe}/>Remember Me <br />
         <Button label="Login" type="submit" icon="pi pi-user" className="w-10rem mx-auto" onClick={(e)=>login(e)}></Button> <br />
         <Button label="Sign Up" type="submit" icon="pi pi-user" className="w-10rem mx-auto" onClick={(e)=>register(e)} severity="success"></Button>
@@ -127,5 +141,17 @@ const LoginPage = () => {
     </div>
   );
 };
+
+
+//<input className="userName" minLength="5" maxLength="30" type="text" placeholder={checked&&username!=='' ? username : "username"} value={username} onChange={(e) => setUsername(e.target.value)} required/> <br />
+//<input className="passWord" minLength="5" maxLength="30" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required/> <br />
+/* <div className="flex flex-wrap justify-content-center align-items-center gap-2">
+                <label className="w-6rem">Username</label>
+                <InputText id="username" type="text" className="w-12rem" minLength="5" maxLength="30" placeholder={checked&&username!=='' ? username : "username"} value={username} onChange={(e) => setUsername(e.target.value)} required/>
+            </div>
+            <div className="flex flex-wrap justify-content-center align-items-center gap-2">
+                <label className="w-6rem">Password</label>
+                <InputText id="password" type="password" className="w-12rem" minLength="5" maxLength="30" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
+            </div> */
 
 export default LoginPage;
