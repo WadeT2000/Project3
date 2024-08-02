@@ -48,7 +48,7 @@ function DetailsPage () {
                 <iframe 
                   width="100%" 
                   height="200px" 
-                  src="https://www.youtube.com/embed/Aq5WXmQQooo?autoplay=1" 
+                  src="https://www.youtube.com/embed/xvFZjo5PgG0?autoplay=1" 
                   title="YouTube video player" 
                   frameBorder="0" 
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -68,7 +68,21 @@ function DetailsPage () {
               <b>Address:</b> {activityDetails.address}<br/>
               <b>Participants:</b> {activityDetails.participants} <br/>
               <b>Dress Code:</b> {activityDetails.dress_code} <br/>
-              <b>Security:</b> {activityDetails.security}
+              <b>Security:</b> {activityDetails.security}<br />
+              {activityDetails.restrictions && activityDetails.restrictions.length > 0 && (
+                <>
+                  <b>Restrictions: </b>
+                  {(() => {
+                    const restrictionsElements = [];
+                    for (let i = 0; i < activityDetails.restrictions.length; i++) {
+                      restrictionsElements.push(
+                        <span key={i}>{activityDetails.restrictions[i]}. </span>
+                      );
+                    }
+                    return restrictionsElements;
+                  })()}
+                </>
+              )}
             </content>
           </Card>
         ) : (
