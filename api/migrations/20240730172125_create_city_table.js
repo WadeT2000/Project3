@@ -6,6 +6,7 @@ exports.up = function(knex) {
     return knex.schema.createTable('cities', table => {
       table.increments();
       table.string('name', 250).notNullable();
+      table.string('photo', 250).notNullable();
     })
 };
   

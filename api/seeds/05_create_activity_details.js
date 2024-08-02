@@ -32,6 +32,7 @@ const boo = (int)=> {
 
 const restrict = () =>{
   const options = [`No shoes, no service`, `BYOB`, `No inhalers`, `Service animals not allowed`, `Do not feed other patrons`, `Automatic weapons required`, `No harassing`, `No shirt, no service`, `Please keep hands and feet inside the venue at all times`, `Follow common hygiene practices`, `No fighting the inmates`, `Harassing mandatory`]
+  const optionsO = {1: `No shoes, no service`, 2: `BYOB`, 3: `No inhalers`, 4: `Service animals not allowed`, 5: `Do not feed other patrons`, 6: `Automatic weapons required`, 7: `No harassing`, 8: `No shirt, no service`, 9: `Please keep hands and feet inside the venue at all times`, 10: `Follow common hygiene practices`, 11: `No fighting the inmates`, 12: `Harassing mandatory`}
   let allrestrict = []
   if(Math.floor(Math.random()*2)>1){
     return `No restrictions`
@@ -50,6 +51,7 @@ const restrictrecurs = (options, allrestrict)=>{
     return buildrestrict
   }
 }
+
 const dress = ()=>{
   const options = [`socks only`,`tuxedo`, `hat`, 'tie only', 'chaps', 'a full 3-piece-suit', 'birthday suit']
   if(Math.floor(Math.random()*3)>1){
