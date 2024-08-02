@@ -6,7 +6,8 @@ exports.up = function(knex) {
     return knex.schema.createTable('users', table => {
       table.increments();
       table.string('username', 250).notNullable();
-      table.string('password', 2500)
+      table.string('password', 2500);
+      table.string('auth_token', 400);
     })
 };
 

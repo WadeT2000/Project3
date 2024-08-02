@@ -4,9 +4,9 @@
  */
 exports.up = function(knex) {
   return knex.schema.createTable('user_preferences', table => {
-    table.integer('user_id')
-    table.foreign('user_id').references('id').inTable('users')
-    table.string('activities')
+    table.integer('user_id');
+    table.foreign('user_id').references('id').inTable('users').onDelete('CASCADE');
+    table.integer('activities');
   })
 };
 
@@ -15,5 +15,5 @@ exports.up = function(knex) {
  * @returns { Promise<void> }
  */
 exports.down = function(knex) {
-  
+    return knex.schema.dropTableIfExists('user_preferences') 
 };
