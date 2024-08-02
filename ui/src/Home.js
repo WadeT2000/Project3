@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import DropdownList from './DropdownList';
 import Cookies from 'js-cookie';
 import { LogoutButton } from './NavigationButton';
+import CityCard from './components/CityCard';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -18,16 +19,18 @@ const Home = () => {
   }, [navigate]);
 
   return (
-    <div className='homeDiv'>
+    <div className='homeDiv homePage'>
       <div className='buttonContainer'>
       <div></div>
       <LogoutButton />
       </div>
-      
-      <div className='dropDownDiv'>
+      <CityCard />
+      {/* <div className='dropDownDiv'>
       <h1> 2"BDB Travel</h1>
       <DropdownList style='justify-content-center'/>
-      </div>
+      </div> */}
+
+
     </div>
   );
 };
