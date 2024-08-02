@@ -30,20 +30,21 @@ const verifyToken = (req, res, next) => {
     }
 };
 
-app.get('/preferences', verifyToken, (req, res) => {
-    knex('user_preferences')
-    .select('*')
-    // .where('user_id', req.user.id)
+app.get('/preferences', verifyToken, async (req, res) => {
+    var id = ''
+
+    await knex('users').select('*').where("auth_token", req.cookies.auth_token).then(data => id = data[0].id)
+    await knex('user_preferences').select('*').where("user_id", id)
     .then(data => res.status(200).json(data))
 })
 
 app.post('/preferences', verifyToken, async (req, res) => {
     // console.log("testing:", req.cookies)
     var user_id = ''
-    const {activities} = req.body
+    const {activity, city} = req.body
     await knex('users').select('*').where("auth_token", req.cookies.auth_token).then(data => user_id = data[0].id)
     // user_id: 2, username: ... password: ... auth_token: ...
-    await knex('user_preferences').insert({user_id, activities})
+    await knex('user_preferences').insert({user_id, activity, city})
     res.status (200).json({message: 'Preference added'})
 })
 
@@ -57,7 +58,7 @@ app.post("/verify", async (req, res) => {
             const token = jwt.sign({ username: user }, SECRET_KEY, { expiresIn: '1d' });
 
             //console.log(token)
-            console.log("testing 2:", await knex('users').select('*').where("username", user))
+            //console.log("testing 2:", await knex('users').select('*').where("username", user))
             
             await knex('users').update({auth_token: token}).where("username", user);
 
@@ -141,7 +142,7 @@ app.get('/cities', async (req, res) => {
 
             res.status(200).json(result);
         } else {
-            const cities = await knex('cities').select('id', 'name');
+            const cities = await knex('cities').select('id', 'name', 'photo');
             const cityActivities = await Promise.all(cities.map(async (city) => {
                 const activities = await knex('city_activity')
                     .join('activities', 'city_activity.activities_id', '=', 'activities.id')
@@ -151,6 +152,7 @@ app.get('/cities', async (req, res) => {
                 return {
                     id: city.id,
                     name: city.name,
+                    photo: city.photo,
                     activities: activities.map(activity => ({
                         id: activity.id,
                         name: activity.name,

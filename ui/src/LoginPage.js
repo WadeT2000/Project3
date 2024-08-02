@@ -142,16 +142,4 @@ const LoginPage = () => {
   );
 };
 
-
-//<input className="userName" minLength="5" maxLength="30" type="text" placeholder={checked&&username!=='' ? username : "username"} value={username} onChange={(e) => setUsername(e.target.value)} required/> <br />
-//<input className="passWord" minLength="5" maxLength="30" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required/> <br />
-/* <div className="flex flex-wrap justify-content-center align-items-center gap-2">
-                <label className="w-6rem">Username</label>
-                <InputText id="username" type="text" className="w-12rem" minLength="5" maxLength="30" placeholder={checked&&username!=='' ? username : "username"} value={username} onChange={(e) => setUsername(e.target.value)} required/>
-            </div>
-            <div className="flex flex-wrap justify-content-center align-items-center gap-2">
-                <label className="w-6rem">Password</label>
-                <InputText id="password" type="password" className="w-12rem" minLength="5" maxLength="30" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
-            </div> */
-
 export default LoginPage;
