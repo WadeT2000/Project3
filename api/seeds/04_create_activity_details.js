@@ -18,7 +18,7 @@ const names = (id) => {
 };
 
 const price = () =>{
-  return Math.floor(Math.random()*Math.random()*Math.random()*10000)
+  return Math.floor(Math.random()*Math.random()*Math.random()*1000)
 }
 const participants = ()=>{
   var low = Math.ceil(Math.random()*2)

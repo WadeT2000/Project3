@@ -5,8 +5,8 @@
 exports.up = function(knex) {
   return knex.schema.createTable('user_preferences', table => {
     table.integer('user_id');
-    table.foreign('user_id').references('id').inTable('users').onDelete('CASCADE');
-    table.integer('activities');
+    table.string('activity');
+    table.string('city');
   })
 };
 
