@@ -38,12 +38,12 @@ app.get('/preferences', verifyToken, (req, res) => {
 })
 
 app.post('/preferences', verifyToken, async (req, res) => {
-    console.log("testing:", req.cookies)
+    // console.log("testing:", req.cookies)
     var user_id = ''
     const {activities} = req.body
-    await knex('users').select('*').where("auth_token", req.cookies.auth_token).then(data => user_id = data.user_id)
+    await knex('users').select('*').where("auth_token", req.cookies.auth_token).then(data => user_id = data[0].id)
     // user_id: 2, username: ... password: ... auth_token: ...
-    await knex('user_preferences').insert({ user_id, activities})
+    await knex('user_preferences').insert({user_id, activities})
     res.status (200).json({message: 'Preference added'})
 })
 
@@ -56,10 +56,13 @@ app.post("/verify", async (req, res) => {
         if (query.length === 1 && await bcrypt.compare(pass, query[0].password)) {
             const token = jwt.sign({ username: user }, SECRET_KEY, { expiresIn: '1d' });
 
-            // await knex('users').insert({auth_token: token}).where("username", user);
+            //console.log(token)
+            console.log("testing 2:", await knex('users').select('*').where("username", user))
+            
+            await knex('users').update({auth_token: token}).where("username", user);
 
             res.cookie('auth_token', token, { httpOnly: true, secure: false });
-            console.log(res.cookie('auth_token', token, { httpOnly: true, secure: false }))
+            //console.log(res.cookie('auth_token', token, { httpOnly: true, secure: false }))
             res.status(200).json({ message: "Logging you in", token });
         } else {
             res.status(404).json({ message: "Incorrect username or password" });
